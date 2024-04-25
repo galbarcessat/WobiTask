@@ -5,12 +5,14 @@ import { store } from './store/store'
 import './assets/styles/main.scss'
 
 import { HomePage } from './pages/HomePage'
+import { Navbar } from './cmps/Navbar'
 
 export function App() {
 
   return (
     <Provider store={store}>
       <Router>
+        <Navbar />
         <Routes>
 
           <Route element={<HomePage />} path="/" />
