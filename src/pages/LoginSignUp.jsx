@@ -1,5 +1,5 @@
 
-export function LoginSignUpPage() {
+export function LoginSignUp() {
   return (
     <div>LoginSignUpPage</div>
   )

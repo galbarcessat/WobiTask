@@ -1,5 +1,5 @@
 
-export function PresenceTrackPage() {
+export function PresenceTrack() {
     return (
         <div>PresencePage</div>
     )

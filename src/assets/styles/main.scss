@@ -13,8 +13,12 @@
 @import "base/_layout";
 
 // // COMPONENTS
-@import "cmps/Navbar.scss"
+@import "cmps/Navbar.scss";
+@import "cmps/TimeClock.scss";
+@import "cmps/PresenceTrack.scss";
 
 // //PAGES
+@import "pages/HomePage.scss";
+
 
 //MQ

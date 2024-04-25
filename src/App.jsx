@@ -12,7 +12,6 @@ export function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Navbar />
         <Routes>
 
           <Route element={<HomePage />} path="/" />
