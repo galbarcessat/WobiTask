@@ -6,11 +6,9 @@ export function TimeClock() {
 
     const dynStartEndShiftTxt = isInShift ? 'End shift' : 'Start shift'
     return (
-        <div>
             <div className="time-clock-container">
-                <AccessTimeIcon />
+                <AccessTimeIcon fontSize="large" />
                 <h1>{dynStartEndShiftTxt}</h1>
             </div>
-        </div>
     )
 }

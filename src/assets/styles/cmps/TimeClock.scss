@@ -1,0 +1,18 @@
+.time-clock-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(40deg, #2DACEE, #32BFDD, #33CBD6);
+    box-shadow: 2px 1px 24px -8px rgb(45, 172, 238, 0.85);
+    color: white;
+    cursor: pointer;
+
+    h1 {
+        font-size: 1.1rem;
+    }
+}
