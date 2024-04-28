@@ -1,0 +1,27 @@
+.shift-preview {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #F2F0F1;
+    border-radius: .3rem;
+    padding: 1rem;
+    margin-block: 1rem;
+    margin-inline: 1rem;
+
+    h2 {
+        border-bottom: 1px solid black;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    h3 {
+        margin-block: .5rem;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+     span{
+        font-weight: 600;
+     }
+    }
+}

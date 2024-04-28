@@ -11,7 +11,7 @@ export function ChangeViewContainer({ currentView, setCurrentView }) {
             </div>
             <div className="presence-track" onClick={() => setCurrentView('PresenceTrack')}>
                 <CalendarMonthIcon sx={{ color: '#EF6D99' }} fontSize='large' />
-                <h2>Presence track</h2>
+                <h2>Shifts track</h2>
             </div>
         </div>
     )
