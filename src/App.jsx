@@ -3,22 +3,20 @@ import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 import './assets/styles/main.scss'
-
 import { HomePage } from './pages/HomePage'
-import { Navbar } from './cmps/Navbar'
+import { LoginSignUp } from './pages/LoginSignUp'
+import { UserMsg } from './cmps/UserMsg'
 
 export function App() {
 
   return (
     <Provider store={store}>
       <Router>
+        <UserMsg />
         <Routes>
 
           <Route element={<HomePage />} path="/" />
-          {/* <Route path="/auth">
-          <Route path="login" element={<LoginSignup />} />
-          <Route path="sign-up" element={<LoginSignup />} />
-        </Route> */}
+          <Route element={<LoginSignUp />} path="/auth" />
         </Routes>
       </Router>
     </Provider>
