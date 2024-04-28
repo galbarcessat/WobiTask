@@ -14,7 +14,7 @@ export const userService = {
     getLoggedinUser,
 }
 
-window.us = userService
+// window.us = userService
 
 async function getById(userId) {
     return await httpService.get(BASE_URL, userId)
@@ -72,9 +72,9 @@ function _setLoggedinUser(user) {
 }
 
 // Test Data
-userService.signup({ email: 'user1@wobi.com', password: 'user1', fullname: 'Nati Feldbaum', imgUrl : "https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698620005/NatiImg_qvxcqb.png"})
-userService.signup({ email: 'user2@wobi.com', password: 'user2', fullname: 'Omer Vered', imgUrl : "https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698619996/OmerImg_svk1xe.png"})
-userService.signup({ email: 'admin@wobi.com', password: 'admin', fullname: 'Gal Ben Natan' ,imgUrl : 'https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698619973/GalImg_z8ivzb.png'})
+// userService.signup({ email: 'user1@wobi.com', password: 'user1', fullname: 'Nati Feldbaum', imgUrl : "https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698620005/NatiImg_qvxcqb.png"})
+// userService.signup({ email: 'user2@wobi.com', password: 'user2', fullname: 'Omer Vered', imgUrl : "https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698619996/OmerImg_svk1xe.png"})
+// userService.signup({ email: 'admin@wobi.com', password: 'admin', fullname: 'Gal Ben Natan' ,imgUrl : 'https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698619973/GalImg_z8ivzb.png'})
 // userService.login({email: 'muki', password: 'muki1'})
 
 

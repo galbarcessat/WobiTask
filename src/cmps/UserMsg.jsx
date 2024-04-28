@@ -30,8 +30,8 @@ export function UserMsg() {
     if (!msg) return
     return (
         <div className='event-bus-msg'>
-            {msg.type === 'POSITIVE' && <Alert severity="success">{msg.txt}</Alert>}
-            {msg.type === 'NEGATIVE' && <Alert severity="error">{msg.txt}</Alert>}
+            {msg.type === 'POSITIVE' && <Alert variant="filled" severity="success">{msg.txt}</Alert>}
+            {msg.type === 'NEGATIVE' && <Alert variant="filled" severity="error">{msg.txt}</Alert>}
         </div>
 
     )

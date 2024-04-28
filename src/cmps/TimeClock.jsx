@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Avatar } from "@mui/material";
-import { useSelector } from "react-redux";
-import { userReducer } from "../store/reducers/user.reducer";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { showErrorMsg } from "../services/event-bus.service";
+import { SET_USER } from "../store/reducers/user.reducer";
 
 export function TimeClock() {
     const [isInShift, setIsInShift] = useState(false)
-    const [currentTime, setCurrentTime] = useState(new Date())
+    const [currentTime, setCurrentTime] = useState(new Date)
     const timerId = useRef(null)
     const user = useSelector(state => state.userModule.user)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (user?.entry) {
@@ -18,25 +21,52 @@ export function TimeClock() {
     }, [])
 
     useEffect(() => {
+        // getGermanyTime()
         timerId.current = setInterval(() => {
-            setCurrentTime(new Date())
+            // getGermanyTime()
+            setCurrentTime(new Date)
         }, 60000)
 
-        // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(timerId.current)
     }, [])
 
+    async function getGermanyTime() {
+        try {
+            const { data } = await axios.get('http://worldtimeapi.org/api/timezone/Europe/Berlin')
+            const time = data.datetime.substring(11, 16)
+            const date = data.datetime.substring(0, 10)
+            console.log('date:', date)
+            setCurrentTime(time)
+        } catch (error) {
+            showErrorMsg('Error fetching Germany time')
+        }
+
+    }
+
     function startEndShift() {
+        if (!user) {
+            showErrorMsg('Login to enter the shift')
+            return
+        }
         setIsInShift(prevIsInShift => !prevIsInShift)
         console.log('currentTime:', currentTime)
         // each user will have his shifts which is an array of {entry : exist : }
         //get logged in user
         //get current time 
         //send current time to api to get time in germany
+        const updatedUser = user
+        if (!user.entry) {
+            console.log('entry')
+            updatedUser = { ...user, entry: currentTime }
+        } else {
+            console.log('exit')
+            updatedUser = { ...user, exit: currentTime }
+        }
+        // make an action that saves that user 
+        dispatch({ type: SET_USER, user: updatedUser })
         //save on the logged in user / in redux the time in shift on an object in the entry key
-        //when user logs out/ends shift get current user and put on the exit key the current time 
+        //when user logs out exit
     }
-    console.log('currentTime:', currentTime)
 
     const dynStartEndShiftTxt = isInShift ? 'End shift' : 'Start shift'
     return (
@@ -45,9 +75,10 @@ export function TimeClock() {
                 <h1>Welcome,</h1>
                 <h1>{'Gal Ben Natan'}</h1>
                 <Avatar src="" sx={{ width: 80, height: 80 }} />
-                <h2>Current Time : {currentTime.toLocaleTimeString([], {
+                <h2>Current Time : {currentTime?.toLocaleTimeString([], {
                     hour: '2-digit',
-                    minute: '2-digit'
+                    minute: '2-digit',
+                    timeZone: 'Europe/Berlin'
                 })}</h2>
             </div>
             <div className={"time-clock-container " + (isInShift ? 'in-shift' : '')} onClick={() => startEndShift()}>
