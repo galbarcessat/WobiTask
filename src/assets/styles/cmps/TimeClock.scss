@@ -13,6 +13,11 @@
     margin-top: 4rem;
     cursor: pointer;
 
+    &.in-shift {
+        background: linear-gradient(40deg, #f11a1a, #b92b2b, #cc2f2f);
+        box-shadow: 2px 1px 24px -8px rgba(238, 45, 45, 0.85);
+    }
+
     h1 {
         font-size: 1.1rem;
     }

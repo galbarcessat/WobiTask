@@ -49,8 +49,6 @@ async function signup({ email, password, fullname, imgUrl }) {
         console.log('err:', err)
         throw err
     }
-    // return storageService.post(STORAGE_KEY, user)
-    //     .then(_setLoggedinUser(user))
 }
 
 async function logout() {
@@ -61,8 +59,6 @@ async function logout() {
         console.error(error)
         throw error
     }
-    // sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN)
-    // return Promise.resolve()
 }
 
 function getLoggedinUser() {
@@ -76,9 +72,9 @@ function _setLoggedinUser(user) {
 }
 
 // Test Data
-// userService.signup({ email: 'nati@funday.com', password: 'nati', fullname: 'Nati Feldbaum', imgUrl : "https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698620005/NatiImg_qvxcqb.png"})
-// userService.signup({ email: 'gal@funday.com', password: 'gal', fullname: 'Gal Ben Natan' ,imgUrl : 'https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698619973/GalImg_z8ivzb.png'})
-// userService.signup({ email: 'omer@funday.com', password: 'omer', fullname: 'Omer Vered', imgUrl : "https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698619996/OmerImg_svk1xe.png"})
+userService.signup({ email: 'user1@wobi.com', password: 'user1', fullname: 'Nati Feldbaum', imgUrl : "https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698620005/NatiImg_qvxcqb.png"})
+userService.signup({ email: 'user2@wobi.com', password: 'user2', fullname: 'Omer Vered', imgUrl : "https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698619996/OmerImg_svk1xe.png"})
+userService.signup({ email: 'admin@wobi.com', password: 'admin', fullname: 'Gal Ben Natan' ,imgUrl : 'https://res.cloudinary.com/ddcaqfqvh/image/upload/v1698619973/GalImg_z8ivzb.png'})
 // userService.login({email: 'muki', password: 'muki1'})
 
 

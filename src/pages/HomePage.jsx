@@ -3,7 +3,6 @@ import { Navbar } from "../cmps/Navbar";
 import { TimeClock } from "../cmps/TimeClock";
 import { ShiftsTrack } from "../cmps/ShiftsTrack";
 import { ChangeViewContainer } from "../cmps/ChangeViewContainer";
-import { Avatar } from "@mui/material";
 
 export function HomePage() {
     const [currentView, setCurrentView] = useState('TimeClock')
@@ -12,12 +11,9 @@ export function HomePage() {
         <>
             <Navbar />
             <div className='home-page-container'>
-
                 {currentView === 'TimeClock' && <TimeClock />}
                 {currentView === 'PresenceTrack' && <ShiftsTrack />}
-
                 <ChangeViewContainer currentView={currentView} setCurrentView={setCurrentView} />
-
             </div>
         </>
     )

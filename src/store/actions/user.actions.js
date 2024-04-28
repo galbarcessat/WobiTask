@@ -1,8 +1,7 @@
 import { userService } from "../../services/user.service.js";
 import { store } from '../store.js'
-
+import { REMOVE_USER, SET_USER, SET_USERS } from "../reducers/user.reducer.js";
 import { showErrorMsg } from '../../services/event-bus.service.js'
-import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from "../reducers/user.reducer.js";
 
 export async function loadUsers() {
     try {
@@ -54,12 +53,3 @@ export async function logout() {
     }
 }
 
-export async function loadUser(userId) {
-    try {
-        const user = await userService.getById(userId);
-        store.dispatch({ type: SET_WATCHED_USER, user })
-    } catch (err) {
-        showErrorMsg('Cannot load user')
-        console.log('Cannot load user', err)
-    }
-}

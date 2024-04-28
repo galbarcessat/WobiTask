@@ -14,7 +14,6 @@ export function App() {
       <Router>
         <UserMsg />
         <Routes>
-
           <Route element={<HomePage />} path="/" />
           <Route element={<LoginSignUp />} path="/auth" />
         </Routes>
