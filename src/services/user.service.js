@@ -12,6 +12,7 @@ export const userService = {
     signup,
     getById,
     getLoggedinUser,
+    saveUser
 }
 
 window.us = userService
@@ -19,6 +20,14 @@ window.us = userService
 async function getById(userId) {
     return await httpService.get(BASE_URL, userId)
     // return storageService.get(STORAGE_KEY, userId)
+}
+
+async function saveUser(user) {
+    try {
+        const savedUser = await httpService.put('user/' + `${user._id}`, user)
+    } catch (error) {
+        throw error
+    }
 }
 
 async function login({ username, password }) {
@@ -29,10 +38,6 @@ async function login({ username, password }) {
         console.log('err:', err)
         throw err
     }
-    // const users = await storageService.query(STORAGE_KEY, { email, password })
-    // const user = users.find(user => user.email === email)
-    // if (user && user.password === password) return _setLoggedinUser(user)
-    // else return Promise.reject('Invalid login')
 }
 
 async function signup({ username, password, imgUrl }) {

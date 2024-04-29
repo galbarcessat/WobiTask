@@ -1,7 +1,6 @@
 import { userService } from "../../services/user.service.js";
 import { store } from '../store.js'
 import { REMOVE_USER, SET_USER, SET_USERS } from "../reducers/user.reducer.js";
-import { showErrorMsg } from '../../services/event-bus.service.js'
 
 export async function loadUsers() {
     try {
@@ -12,12 +11,14 @@ export async function loadUsers() {
     }
 }
 
-export async function removeUser(userId) {
+export async function updateUser(user, type) {
     try {
-        await userService.remove(userId)
-        store.dispatch({ type: REMOVE_USER, userId })
-    } catch (err) {
-        console.log('UserActions: err in removeUser', err)
+        if (type === 'exit') {
+            const savedUser = await userService.saveUser(user)
+        }
+        store.dispatch({ type: SET_USER, user })
+    } catch (error) {
+        throw error
     }
 }
 
