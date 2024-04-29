@@ -6,11 +6,10 @@ import axios from "axios";
 import { showErrorMsg } from "../services/event-bus.service";
 import { SET_USER } from "../store/reducers/user.reducer";
 
-export function TimeClock() {
+export function TimeClock({user}) {
     const [isInShift, setIsInShift] = useState(false)
     const [currentTime, setCurrentTime] = useState(new Date)
     const timerId = useRef(null)
-    const user = useSelector(state => state.userModule.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -50,20 +49,24 @@ export function TimeClock() {
         }
         setIsInShift(prevIsInShift => !prevIsInShift)
         console.log('currentTime:', currentTime)
-        // each user will have his shifts which is an array of {entry : exist : }
         //get logged in user
         //get current time 
         //send current time to api to get time in germany
-        const updatedUser = user
+        let updatedUser
         if (!user.entry) {
             console.log('entry')
             updatedUser = { ...user, entry: currentTime }
+            dispatch({ type: SET_USER, user: updatedUser })
         } else {
             console.log('exit')
-            updatedUser = { ...user, exit: currentTime }
+            const shift = { entry: user.entry, exit: new Date }
+            updatedUser = { ...user, entry: null, shifts: [...user.shifts, shift] }
+            // if exit then add the shift to the user.shifts array - shift = {entry,exit}
         }
-        // make an action that saves that user 
+
         dispatch({ type: SET_USER, user: updatedUser })
+
+        // make an action that saves that user 
         //save on the logged in user / in redux the time in shift on an object in the entry key
         //when user logs out exit
     }
