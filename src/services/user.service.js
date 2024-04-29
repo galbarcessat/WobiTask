@@ -12,13 +12,18 @@ export const userService = {
     signup,
     getById,
     getLoggedinUser,
-    saveUser
+    saveUser,
+    getUsers
 }
 
 window.us = userService
 
 async function getById(userId) {
     return await httpService.get(BASE_URL, userId)
+}
+
+async function getUsers() {
+    return await httpService.get('user/')
 }
 
 async function saveUser(user) {

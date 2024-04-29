@@ -1,6 +1,6 @@
 import { userService } from "../../services/user.service.js";
 import { store } from '../store.js'
-import { REMOVE_USER, SET_USER, SET_USERS } from "../reducers/user.reducer.js";
+import { SET_USER, SET_USERS } from "../reducers/user.reducer.js";
 
 export async function loadUsers() {
     try {
@@ -17,6 +17,16 @@ export async function updateUser(user, type) {
             const savedUser = await userService.saveUser(user)
         }
         store.dispatch({ type: SET_USER, user })
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function getUsers() {
+    try {
+        const users = await userService.getUsers()
+        // store.dispatch({ type: SET_USERS, users })
+        return users
     } catch (error) {
         throw error
     }

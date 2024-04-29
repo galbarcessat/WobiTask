@@ -20,11 +20,12 @@ export function Navbar({ user }) {
                     :
                     <span onClick={() => onLogout()}>Logout</span>
                 }
+                {user.isAdmin && <span onClick={() => navigate('/admin')}>Admin Panel</span>}
                 {user && <div className='user-details'>
                     <Avatar src={user.imgUrl} sx={{ width: 36, height: 36 }} />
                     <h1>{user.username}</h1>
                 </div>}
             </div>
-        </div>
+        </div >
     )
 }
