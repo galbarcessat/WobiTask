@@ -71,7 +71,7 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, username: user.username, imgUrl: user.imgUrl }
+    const userToSave = { _id: user._id, username: user.username, imgUrl: user.imgUrl, shifts: user.shifts }
     if (user.isAdmin) {
         userToSave.isAdmin = true
     }

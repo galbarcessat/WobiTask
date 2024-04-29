@@ -11,7 +11,6 @@ export function TimeClock({ user }) {
     const [isInShift, setIsInShift] = useState(false)
     const [currentTime, setCurrentTime] = useState('')
     const timerId = useRef(null)
-    const dispatch = useDispatch()
 
     useEffect(() => {
         if (user?.entry) {
