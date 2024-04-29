@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import { showErrorMsg } from "../services/event-bus.service";
-import { SET_USER } from "../store/reducers/user.reducer";
 import { Avatar } from "@mui/material";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { updateUser } from "../store/actions/user.actions";
@@ -59,8 +57,6 @@ export function TimeClock({ user }) {
             updateUser(updatedUser, 'exit')
             setIsInShift(false)
         }
-
-        // dispatch({ type: SET_USER, user: updatedUser })
     }
 
 
@@ -71,12 +67,6 @@ export function TimeClock({ user }) {
                 <h1>Welcome,</h1>
                 <h1>{user?.username}</h1>
                 <Avatar src={user?.imgUrl} sx={{ width: 80, height: 80 }} />
-                {/* <h2>Current Time : {currentTime?.toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    timeZone: 'Europe/Berlin'
-                })}</h2> */}
-
                 <h2>Current Time : {currentTime && <span>{currentTime}</span>}</h2>
             </div>
             <div className={"time-clock-container " + (isInShift ? 'in-shift' : '')} onClick={() => startEndShift()}>
