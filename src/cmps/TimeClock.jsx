@@ -6,7 +6,7 @@ import axios from "axios";
 import { showErrorMsg } from "../services/event-bus.service";
 import { SET_USER } from "../store/reducers/user.reducer";
 
-export function TimeClock({user}) {
+export function TimeClock({ user }) {
     const [isInShift, setIsInShift] = useState(false)
     const [currentTime, setCurrentTime] = useState(new Date)
     const timerId = useRef(null)
@@ -49,7 +49,6 @@ export function TimeClock({user}) {
         }
         setIsInShift(prevIsInShift => !prevIsInShift)
         console.log('currentTime:', currentTime)
-        //get logged in user
         //get current time 
         //send current time to api to get time in germany
         let updatedUser
@@ -76,8 +75,8 @@ export function TimeClock({user}) {
         <>
             <div className="welcome-user-container">
                 <h1>Welcome,</h1>
-                <h1>{'Gal Ben Natan'}</h1>
-                <Avatar src="" sx={{ width: 80, height: 80 }} />
+                <h1>{user?.username}</h1>
+                <Avatar src={user?.imgUrl} sx={{ width: 80, height: 80 }} />
                 <h2>Current Time : {currentTime?.toLocaleTimeString([], {
                     hour: '2-digit',
                     minute: '2-digit',

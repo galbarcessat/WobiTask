@@ -1,6 +1,6 @@
+import { useNavigate } from 'react-router-dom'
 import { Avatar } from '@mui/material'
 import WobiLogo from '../assets/imgs/WobiLogo.png'
-import { useNavigate } from 'react-router-dom'
 import { logout } from '../store/actions/user.actions'
 
 export function Navbar({ user }) {
@@ -10,7 +10,6 @@ export function Navbar({ user }) {
         logout()
         navigate('/auth')
     }
-
 
     return (
         <div className='navbar-container'>
@@ -22,7 +21,7 @@ export function Navbar({ user }) {
                     <span onClick={() => onLogout()}>Logout</span>
                 }
                 {user && <div className='user-details'>
-                    <Avatar src="" sx={{ width: 36, height: 36 }} />
+                    <Avatar src={user.imgUrl} sx={{ width: 36, height: 36 }} />
                     <h1>{user.username}</h1>
                 </div>}
             </div>
