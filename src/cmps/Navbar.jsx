@@ -13,7 +13,7 @@ export function Navbar({ user }) {
 
     return (
         <div className='navbar-container'>
-            <img src={WobiLogo} alt="" onClick={() => navigate('/')} />
+            <img className='wobi-logo' src={WobiLogo} alt="" onClick={() => navigate('/')} />
             <div>
                 {!user ?
                     <span onClick={() => navigate('/auth')}>Login</span>
