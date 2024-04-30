@@ -10,23 +10,30 @@
         text-align: center;
     }
 
-    .save-changes-btn {
+    .btns-container {
         display: flex;
-        justify-content: center;
         align-items: center;
-        padding: .8rem;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
         margin-block: 4rem;
-        margin-inline: auto;
-        border-radius: 1rem;
-        outline: none;
-        background: linear-gradient(40deg, #2DACEE, #32BFDD, #33CBD6);
-        box-shadow: 2px 1px 24px -8px rgb(45, 172, 238, 0.85);
-        color: white;
-        cursor: pointer;
-        transition: all .2s ease-in;
 
-        &:hover {
-            color: black;
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: .8rem;
+            border-radius: 1rem;
+            outline: none;
+            background: linear-gradient(40deg, #2DACEE, #32BFDD, #33CBD6);
+            box-shadow: 2px 1px 24px -8px rgb(45, 172, 238, 0.85);
+            color: white;
+            cursor: pointer;
+            transition: all .2s ease-in;
+
+            &:hover {
+                color: black;
+            }
         }
     }
 
