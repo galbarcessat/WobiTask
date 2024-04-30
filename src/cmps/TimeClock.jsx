@@ -4,10 +4,12 @@ import { showErrorMsg } from "../services/event-bus.service";
 import { Avatar } from "@mui/material";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { updateUser } from "../store/actions/user.actions";
+import { utilService } from "../services/util.service";
 
 export function TimeClock({ user }) {
     const [isInShift, setIsInShift] = useState(false)
     const [currentTime, setCurrentTime] = useState('')
+    const [currentDate, setCurrentDate] = useState('')
     const timerId = useRef(null)
 
     useEffect(() => {
@@ -30,8 +32,8 @@ export function TimeClock({ user }) {
             const { data } = await axios.get('http://worldtimeapi.org/api/timezone/Europe/Berlin')
             const time = data.datetime.substring(11, 16)
             const date = data.datetime.substring(0, 10)
-            console.log('date:', date)
             setCurrentTime(time)
+            setCurrentDate(date)
         } catch (error) {
             showErrorMsg('Error fetching Germany time')
         }
@@ -50,15 +52,13 @@ export function TimeClock({ user }) {
             setIsInShift(true)
         } else {
             console.log('exit')
-            const shift = { entry: user.entry, exit: new Date }
+            const shift = { entry: user.entry, exit: new Date, id: utilService.makeId() }
             if (!user.shifts) user.shifts = []
             updatedUser = { ...user, entry: null, shifts: [...user.shifts, shift] }
-
             updateUser(updatedUser, 'exit')
             setIsInShift(false)
         }
     }
-
 
     const dynStartEndShiftTxt = isInShift ? 'End shift' : 'Start shift'
     return (
@@ -68,6 +68,7 @@ export function TimeClock({ user }) {
                 <h1>{user?.username}</h1>
                 <Avatar src={user?.imgUrl} sx={{ width: 80, height: 80 }} />
                 <h2>Current Time : {currentTime && <span>{currentTime}</span>}</h2>
+                <h2>{currentDate && <span>{currentDate}</span>}</h2>
             </div>
             <div className={"time-clock-container " + (isInShift ? 'in-shift' : '')} onClick={() => startEndShift()}>
                 <AccessTimeIcon fontSize="large" />

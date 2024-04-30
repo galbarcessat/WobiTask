@@ -8,11 +8,6 @@ export function AdminPanel() {
     const [users, setUsers] = useState()
     const user = useSelector(state => state.userModule.user)
 
-    //get all users shifts
-    //show each user shifts with their name
-    //admin can edit these shifts 
-    // show entry and exit as inputs 
-
     useEffect(() => {
         getAllUsers()
     }, [])
@@ -27,13 +22,25 @@ export function AdminPanel() {
         }
     }
 
+    function onSaveUsers() {
+        console.log('users:', users)
+    }
+
+    function updateUsersShifts(updatedUser) {
+        setUsers(prevUsers =>
+            prevUsers.map(user =>
+                user._id === updatedUser._id ? updatedUser : user
+            ))
+    }
 
     return (
         <>
             <Navbar user={user} />
-            <div>
-                <h1>Workers shifts : </h1>
-                {users?.map(user => <ShiftList key={user._id} shifts={user.shifts} username={user.username} isAdmin={true} />)}
+            <div className="admin-panel-container">
+                <h1 className="admin-panel-title">Admin panel : </h1>
+                {users?.map(user => <ShiftList key={user._id} user={user} isAdmin={true} updateUsersShifts={updateUsersShifts} />)}
+
+                <button className="save-changes-btn" onClick={() => onSaveUsers()}>Save changes</button>
             </div>
         </>
     )

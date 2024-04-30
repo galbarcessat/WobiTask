@@ -29,6 +29,7 @@ async function getUsers() {
 async function saveUser(user) {
     try {
         const savedUser = await httpService.put('user/' + `${user._id}`, user)
+        _setLoggedinUser(user)
     } catch (error) {
         throw error
     }
