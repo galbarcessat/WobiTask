@@ -25,7 +25,6 @@ export async function updateUser(user, type) {
 export async function getUsers() {
     try {
         const users = await userService.getUsers()
-        // store.dispatch({ type: SET_USERS, users })
         return users
     } catch (error) {
         throw error

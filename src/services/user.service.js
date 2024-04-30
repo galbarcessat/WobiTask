@@ -13,6 +13,7 @@ export const userService = {
     getById,
     getLoggedinUser,
     saveUser,
+    saveUsers,
     getUsers
 }
 
@@ -34,6 +35,16 @@ async function saveUser(user) {
         throw error
     }
 }
+
+async function saveUsers(updatedUsers) {
+    try {
+        const savedUsers = await httpService.put('user/users', updatedUsers)
+        console.log('savedUsers in user service:', savedUsers)
+    } catch (error) {
+        throw error
+    }
+}
+
 
 async function login({ username, password }) {
     try {

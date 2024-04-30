@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function ShiftPreview({ shift, isAdmin }) {
+export function ShiftPreview({ shift, isAdmin, updateUserShift }) {
     const [entry, setEntry] = useState(new Date(shift.entry))
     const [exit, setExit] = useState(new Date(shift.exit))
 
@@ -12,17 +12,21 @@ export function ShiftPreview({ shift, isAdmin }) {
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',
-            timeZone: 'Europe/Berlin',
+            // timeZone: 'Europe/Berlin',
             hour12: false
         })
     }
 
     const handleEntryChange = (e) => {
-        setEntry(new Date(entry.setHours(...e.target.value.split(':'))))
+        const newEntry = (new Date(entry.setHours(...e.target.value.split(':'))))
+        setEntry(newEntry)
+        updateUserShift({ ...shift, entry: newEntry })
     }
 
     const handleExitChange = (e) => {
-        setExit(new Date(exit.setHours(...e.target.value.split(':'))))
+        const newExit = (new Date(exit.setHours(...e.target.value.split(':'))))
+        setExit(newExit)
+        updateUserShift({ ...shift, exit: newExit })
     }
 
     return (
