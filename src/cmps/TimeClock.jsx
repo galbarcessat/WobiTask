@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { updateUser } from "../store/actions/user.actions";
+import { utilService } from "../services/util.service";
 import { showErrorMsg } from "../services/event-bus.service";
 import { Avatar } from "@mui/material";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { updateUser } from "../store/actions/user.actions";
-import { utilService } from "../services/util.service";
 
 export function TimeClock({ user }) {
     const [isInShift, setIsInShift] = useState(false)

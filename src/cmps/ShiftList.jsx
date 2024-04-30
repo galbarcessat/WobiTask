@@ -7,7 +7,6 @@ export function ShiftList({ user, isAdmin, updateUsers }) {
             ...user,
             shifts: user.shifts.map(shift => (shift.id === newShift.id ? { ...shift, ...newShift } : shift))
         }
-
         updateUsers(updatedUser)
     }
 

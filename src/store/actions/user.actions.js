@@ -1,15 +1,6 @@
 import { userService } from "../../services/user.service.js";
 import { store } from '../store.js'
-import { SET_USER, SET_USERS } from "../reducers/user.reducer.js";
-
-export async function loadUsers() {
-    try {
-        const users = await userService.getUsers()
-        store.dispatch({ type: SET_USERS, users })
-    } catch (err) {
-        console.log('UserActions: err in loadUsers', err)
-    }
-}
+import { SET_USER } from "../reducers/user.reducer.js";
 
 export async function updateUser(user, type) {
     try {

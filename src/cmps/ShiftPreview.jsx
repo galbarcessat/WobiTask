@@ -17,13 +17,13 @@ export function ShiftPreview({ shift, isAdmin, updateUserShift }) {
         })
     }
 
-    const handleEntryChange = (e) => {
+    function handleEntryChange(e) {
         const newEntry = (new Date(entry.setHours(...e.target.value.split(':'))))
         setEntry(newEntry)
         updateUserShift({ ...shift, entry: newEntry })
     }
 
-    const handleExitChange = (e) => {
+    function handleExitChange(e) {
         const newExit = (new Date(exit.setHours(...e.target.value.split(':'))))
         setExit(newExit)
         updateUserShift({ ...shift, exit: newExit })
