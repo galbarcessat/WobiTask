@@ -29,7 +29,7 @@ export function TimeClock({ user }) {
 
     async function getGermanyTime() {
         try {
-            const { data } = await axios.get('http://worldtimeapi.org/api/timezone/Europe/Berlin')
+            const { data } = await axios.get('https://worldtimeapi.org/api/timezone/Europe/Berlin')
             const time = data.datetime.substring(11, 16)
             const date = data.datetime.substring(0, 10)
             setCurrentTime(time)
